@@ -8,7 +8,7 @@
 html,
 body {
   position: relative;
-  height: 100%;
+  /* height: 100%; */
 }
 
 body {
@@ -20,6 +20,10 @@ body {
   padding: 0;
 }
 
+.darkTheme {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
 
 @media (min-width: 576px) {
   .containeer {
@@ -287,6 +291,10 @@ body {
   margin-bottom: 1rem;
 }
 
+.darkTheme .inner-column h1, .darkTheme .inner-column p, .darkTheme .inner-column h4 {
+  color: white;
+}
+
 /* ====================== */
 .quote {
   background: url(../../../public/images/qt-bg.jpg) no-repeat;
@@ -328,6 +336,10 @@ body {
   padding: 0 0 10px 0;
   font-weight: normal;
   line-height: 120% !important;
+}
+
+.darkTheme .heading-title h2, .darkTheme .heading-title p {
+  color: white;
 }
 
 .heading-title p {
@@ -471,7 +483,6 @@ body {
   height: 500px !important;
 }
 
-
 .avatar {
   width: 135px;
   height: 135px;
@@ -519,6 +530,10 @@ body {
   font-size: 18px;
   font-family: 'Athiti', sans-serif;
   line-height: 1.80857;
+}
+
+.darkTheme .info p, .darkTheme .text {
+  color: white !important;
 }
 
 .card-body {

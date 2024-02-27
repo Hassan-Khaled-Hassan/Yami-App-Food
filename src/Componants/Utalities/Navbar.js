@@ -1,12 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-
-
 
 const navigation = [
   { name: "Home", href: "#", current: true },
@@ -32,7 +30,18 @@ const Navbar = () => {
     const newMode = !dark;
     setDark(newMode);
     localStorage.setItem("darkMode", newMode);
+    // window.location.reload();
   };
+
+  useEffect(() => {
+    if (dark) {
+      document.querySelector("#root").classList.add("darkTheme");
+      document.querySelector("body").classList.add("darkTheme");
+    } else {
+      document.querySelector("#root").classList.remove("darkTheme");
+      document.querySelector("body").classList.remove("darkTheme");
+    }
+  }, [dark]);
   return (
     <Disclosure
       as="nav"
@@ -76,24 +85,34 @@ const Navbar = () => {
                     <Link
                       key="Menu"
                       to="/menu"
-                      className="sm:ml-0 md:ml-3 lg:ml-4 text-gray-500 hover:bg-brown hover:text-white rounded-md px-3 py-2 text-sm font-medium "
+                      className={`sm:ml-0 md:ml-3 lg:ml-4 hover:bg-brown hover:text-white rounded-md px-3 py-2 text-sm font-medium ${
+                        dark ? "text-white" : "text-gray-500"
+                      }`}
                     >
                       Menu
                     </Link>
                     <Link
                       key="About"
                       to="/about-us"
-                      className="sm:ml-0 md:ml-3 lg:ml-4 text-gray-500 hover:bg-brown hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                      className={`sm:ml-0 md:ml-3 lg:ml-4 hover:bg-brown hover:text-white rounded-md px-3 py-2 text-sm font-medium ${
+                        dark ? "text-white" : "text-gray-500"
+                      }`}
                     >
                       About
                     </Link>
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                     <Menu as="div" className="relative inline-block text-left">
                       <div>
-                        <Menu.Button className="inline-flex w-full justify-center  rounded-md px-3 py-2 text-sm font-medium text-gray-500 shadow-sm hover:text-white   hover:bg-brown">
+                        <Menu.Button
+                          className={`inline-flex w-full justify-center  rounded-md px-3 py-2 text-sm font-medium  shadow-sm hover:text-white   hover:bg-brown ${
+                            dark ? "text-white" : "text-gray-500"
+                          }`}
+                        >
                           Pages
                           <ChevronDownIcon
-                            className="-mr-1 h-5 w-5 text-gray-500 hover:text-white "
+                            className={`-mr-1 h-5 w-5 ${
+                              dark ? "text-white" : "text-gray-500"
+                            } hover:text-white`}
                             aria-hidden="true"
                           />
                         </Menu.Button>
@@ -162,10 +181,16 @@ const Navbar = () => {
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                     <Menu as="div" className="relative inline-block text-left">
                       <div>
-                        <Menu.Button className="inline-flex w-full justify-center  rounded-md px-3 py-2 text-sm font-medium text-gray-500 shadow-sm   hover:text-white  hover:bg-brown">
+                        <Menu.Button
+                          className={`inline-flex w-full justify-center  rounded-md px-3 py-2 text-sm font-medium  shadow-sm hover:text-white   hover:bg-brown ${
+                            dark ? "text-white" : "text-gray-500"
+                          }`}
+                        >
                           Blog
                           <ChevronDownIcon
-                            className="-mr-1 h-5 w-5 text-gray-500 hover:text-white"
+                            className={`-mr-1 h-5 w-5 ${
+                              dark ? "text-white" : "text-gray-500"
+                            } hover:text-white`}
                             aria-hidden="true"
                           />
                         </Menu.Button>
@@ -220,7 +245,9 @@ const Navbar = () => {
                     <Link
                       key="Contact"
                       to="/Contact-Form"
-                      className="sm:ml-0 md:ml-3 lg:ml-4 text-gray-500 hover:bg-brown hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                      className={`sm:ml-0 md:ml-3 lg:ml-4 hover:bg-brown hover:text-white rounded-md px-3 py-2 text-sm font-medium ${
+                        dark ? "text-white" : "text-gray-500"
+                      }`}
                     >
                       Contact
                     </Link>
@@ -230,7 +257,7 @@ const Navbar = () => {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"
-                  className="relative rounded-full p-1 text-second hover:text-third focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-500"
+                  className= {`relative rounded-full p-1 ${dark ? "text-white" : "text-second"} hover:text-third focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-50`}
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
